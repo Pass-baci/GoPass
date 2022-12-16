@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="3fe9ed98-580d-46a8-94a4-1309b0c1aa22" name="GoPass">
+        <fileTransfer rootFolder="/home/go-pro/src" accessType="SFTP" host="192.168.230.135" port="22" sshConfigId="b4ed6754-7d63-4d32-81d3-451ffa56d586" sshConfig="root@192.168.230.135:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
