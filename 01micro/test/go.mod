@@ -3,7 +3,7 @@ module test
 go 1.18
 
 require (
-	github.com/Pass-baci/common v0.0.0-20221216082953-920c95c62c72
+	github.com/Pass-baci/common v0.0.0-20221219024307-5a17f51fbda5
 	github.com/asim/go-micro/v3 v3.7.1
 	github.com/go-micro/plugins/v3/registry/consul v1.1.0
 	github.com/micro/micro/v3 v3.15.1
@@ -26,6 +26,7 @@ require (
 	github.com/go-git/go-billy/v5 v5.3.1 // indirect
 	github.com/go-git/go-git/v5 v5.4.2 // indirect
 	github.com/go-micro/plugins/v3/config/source/consul v1.1.0 // indirect
+	github.com/go-micro/plugins/v3/wrapper/trace/opentracing v1.1.0 // indirect
 	github.com/go-sql-driver/mysql v1.6.0 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/google/uuid v1.3.0 // indirect
@@ -48,14 +49,18 @@ require (
 	github.com/mitchellh/hashstructure v1.1.0 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/nxadm/tail v1.4.8 // indirect
+	github.com/opentracing/opentracing-go v1.2.0 // indirect
 	github.com/oxtoacart/bpool v0.0.0-20190530202638-03653db5a59c // indirect
 	github.com/patrickmn/go-cache v2.1.0+incompatible // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/russross/blackfriday/v2 v2.0.1 // indirect
 	github.com/sergi/go-diff v1.1.0 // indirect
 	github.com/shurcooL/sanitized_anchor_name v1.0.0 // indirect
+	github.com/uber/jaeger-client-go v2.30.0+incompatible // indirect
+	github.com/uber/jaeger-lib v2.4.1+incompatible // indirect
 	github.com/urfave/cli/v2 v2.3.0 // indirect
 	github.com/xanzy/ssh-agent v0.3.0 // indirect
+	go.uber.org/atomic v1.10.0 // indirect
 	golang.org/x/crypto v0.0.0-20220722155217-630584e8d5aa // indirect
 	golang.org/x/mod v0.7.0 // indirect
 	golang.org/x/net v0.4.0 // indirect

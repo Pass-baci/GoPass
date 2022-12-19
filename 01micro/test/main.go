@@ -6,6 +6,8 @@ import (
 	"github.com/asim/go-micro/v3"
 	"github.com/asim/go-micro/v3/registry"
 	"github.com/go-micro/plugins/v3/registry/consul"
+	microOpentracing "github.com/go-micro/plugins/v3/wrapper/trace/opentracing"
+	"github.com/opentracing/opentracing-go"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"test/handler"
@@ -30,7 +32,7 @@ func main() {
 
 	// 使用配置中心获取数据库配置
 	var mysqlConfig = &common.MysqlConfig{}
-	if mysqlConfig, err = common.GetMysqlFromConsul(conf, "mysql"); err != nil {
+	if mysqlConfig, err = common.GetMysqlConfigFromConsul(conf, "mysql"); err != nil {
 		logger.Fatal(err)
 	}
 
@@ -41,11 +43,29 @@ func main() {
 		logger.Fatal(err)
 	}
 
+	// 使用配置中心获取Jaeger配置
+	var jaegerConfig = &common.JaegerConfig{}
+	if jaegerConfig, err = common.GetJaegerConfigFromConsul(conf, "jaeger"); err != nil {
+		logger.Fatal(err)
+	}
+
+	// 添加链路追踪
+	tracer, closer, err := common.NewTracer(jaegerConfig.ServiceName, jaegerConfig.Address)
+	if err != nil {
+		logger.Fatal(err)
+	}
+	defer closer.Close()
+	opentracing.SetGlobalTracer(tracer)
+
 	// Create service
 	srv := micro.NewService(
 		micro.Name("test"),
 		micro.Version("1.0"),
+		// 添加consul
 		micro.Registry(consulClient),
+		// 添加链路追踪
+		micro.WrapHandler(microOpentracing.NewHandlerWrapper(opentracing.GlobalTracer())),
+		micro.WrapClient(microOpentracing.NewClientWrapper(opentracing.GlobalTracer())),
 	)
 
 	// Register handler
